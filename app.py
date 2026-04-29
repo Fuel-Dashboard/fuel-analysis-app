@@ -594,9 +594,12 @@ def preprocess_data(df):
         df_clean['Week'] = df_clean['Date'].dt.isocalendar().week
 
     if all(col in df_clean.columns for col in ['Km avant', 'KM après']):
+        df_clean['Km avant'] = pd.to_numeric(df_clean['Km avant'], errors='coerce')
+        df_clean['KM après'] = pd.to_numeric(df_clean['KM après'], errors='coerce')
         df_clean['Kilométrage parcouru'] = df_clean['KM après'] - df_clean['Km avant']
 
     if all(col in df_clean.columns for col in ['Quantité', 'Kilométrage parcouru']):
+        df_clean['Quantité'] = pd.to_numeric(df_clean['Quantité'], errors='coerce')
         mask = df_clean['Kilométrage parcouru'] > 0
         df_clean.loc[mask, 'Consommation/100km'] = (
             df_clean.loc[mask, 'Quantité'] / df_clean.loc[mask, 'Kilométrage parcouru']
@@ -1021,6 +1024,13 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # Always-safe fallback defaults (overridden from file data if available)
+    default_prix_ssp = 2.500
+    default_prix_go  = 1.800
+    default_prix_goss = 1.900
+    anomaly_lower_limit = 2.0
+    anomaly_upper_limit = 30.0
+
     if uploaded_file:
         try:
             if uploaded_file.name.endswith('.csv'):
@@ -1032,18 +1042,15 @@ with st.sidebar:
             df_original_raw = df_raw.copy()
             df = preprocess_data(df_raw)
 
-            default_prix_ssp = 2.500
-            default_prix_go = 1.800
-            default_prix_goss = 1.900
-
             if 'P.U' in df.columns and 'Produit' in df.columns:
                 for produit_type, attr in [('SSP', 'ssp'), ('GO', 'go'), ('GOSS', 'goss')]:
                     mask = df['Produit'].astype(str).str.upper().str.contains(produit_type, na=False)
-                    pu = pd.to_numeric(df.loc[mask, 'P.U'], errors='coerce')
-                    if not pu.empty and pu.notna().any():
-                        if attr == 'ssp': default_prix_ssp = pu.mean()
-                        elif attr == 'go': default_prix_go = pu.mean()
-                        elif attr == 'goss': default_prix_goss = pu.mean()
+                    pu = pd.to_numeric(df.loc[mask, 'P.U'].squeeze(), errors='coerce')
+                    if pu.notna().any():
+                        mean_val = float(pu.mean())
+                        if attr == 'ssp': default_prix_ssp = mean_val
+                        elif attr == 'go': default_prix_go = mean_val
+                        elif attr == 'goss': default_prix_goss = mean_val
 
             # ── Filters ──
             st.subheader(tr("analysis_filters"))
@@ -1105,11 +1112,6 @@ with st.sidebar:
     else:
         df = None
         df_original_raw = None
-        default_prix_ssp = 2.500
-        default_prix_go = 1.800
-        default_prix_goss = 1.900
-        anomaly_lower_limit = 2.0
-        anomaly_upper_limit = 30.0
 
     st.markdown("---")
 
