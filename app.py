@@ -988,6 +988,28 @@ def get_yearly_breakdown(df, co2_factors, current_lang):
 
 
 # ============================================
+# HELPERS
+# ============================================
+def safe_scalar(value, default=0.0):
+    """Always return a plain Python float, even for Arrow-backed Series/arrays."""
+    try:
+        if hasattr(value, 'item'):      # numpy scalar
+            return float(value.item())
+        if hasattr(value, 'iloc'):      # Series / DataFrame
+            value = value.iloc[0]
+        return float(value)
+    except Exception:
+        return float(default)
+
+def _valid_price(v):
+    """Return True if v is a plain numeric scalar usable in number_input."""
+    try:
+        f = float(v)
+        return not (f != f)  # reject NaN
+    except Exception:
+        return False
+
+# ============================================
 # SIDEBAR
 # ============================================
 with st.sidebar:
@@ -1028,6 +1050,13 @@ with st.sidebar:
     )
 
     st.markdown("---")
+
+    # ── Validate & sanitise any fuel prices previously stored in session state ──
+    for _key, _default in [('cached_prix_ssp', 2.500),
+                            ('cached_prix_go',  1.800),
+                            ('cached_prix_goss', 1.900)]:
+        if _key in st.session_state and not _valid_price(st.session_state[_key]):
+            st.session_state[_key] = _default
 
     # Always-safe fallback defaults (overridden from file data if available)
     default_prix_ssp = 2.500
@@ -1129,14 +1158,23 @@ with st.sidebar:
     st.markdown(f"**{'Prix carburants' if current_lang=='fr' else 'Fuel prices'}**")
     col_p1, col_p2, col_p3 = st.columns(3)
     with col_p1:
-        prix_ssp = st.number_input(tr("fuel_price_ssp"), value=float(default_prix_ssp),
-                                   min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+        try:
+            prix_ssp = st.number_input(tr("fuel_price_ssp"), value=safe_scalar(default_prix_ssp, 2.500),
+                                       min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+        except Exception:
+            prix_ssp = 2.500
     with col_p2:
-        prix_go = st.number_input(tr("fuel_price_go"), value=float(default_prix_go),
-                                  min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+        try:
+            prix_go = st.number_input(tr("fuel_price_go"), value=safe_scalar(default_prix_go, 1.800),
+                                      min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+        except Exception:
+            prix_go = 1.800
     with col_p3:
-        prix_goss = st.number_input(tr("fuel_price_goss"), value=float(default_prix_goss),
-                                    min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+        try:
+            prix_goss = st.number_input(tr("fuel_price_goss"), value=safe_scalar(default_prix_goss, 1.900),
+                                        min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+        except Exception:
+            prix_goss = 1.900
 
     st.markdown(f"**{tr('co2_factors')}**")
     col_c1, col_c2, col_c3 = st.columns(3)
