@@ -594,12 +594,9 @@ def preprocess_data(df):
         df_clean['Week'] = df_clean['Date'].dt.isocalendar().week
 
     if all(col in df_clean.columns for col in ['Km avant', 'KM après']):
-        df_clean['Km avant'] = pd.to_numeric(df_clean['Km avant'], errors='coerce')
-        df_clean['KM après'] = pd.to_numeric(df_clean['KM après'], errors='coerce')
         df_clean['Kilométrage parcouru'] = df_clean['KM après'] - df_clean['Km avant']
 
     if all(col in df_clean.columns for col in ['Quantité', 'Kilométrage parcouru']):
-        df_clean['Quantité'] = pd.to_numeric(df_clean['Quantité'], errors='coerce')
         mask = df_clean['Kilométrage parcouru'] > 0
         df_clean.loc[mask, 'Consommation/100km'] = (
             df_clean.loc[mask, 'Quantité'] / df_clean.loc[mask, 'Kilométrage parcouru']
@@ -1031,13 +1028,13 @@ with st.sidebar:
             else:
                 df_raw = pd.read_excel(uploaded_file)
 
-            default_prix_ssp = 2.500
-            default_prix_go = 1.800
-            default_prix_goss = 1.900
-
             df_raw = rename_columns_by_position(df_raw)
             df_original_raw = df_raw.copy()
             df = preprocess_data(df_raw)
+
+            default_prix_ssp = 2.500
+            default_prix_go = 1.800
+            default_prix_goss = 1.900
 
             if 'P.U' in df.columns and 'Produit' in df.columns:
                 for produit_type, attr in [('SSP', 'ssp'), ('GO', 'go'), ('GOSS', 'goss')]:
