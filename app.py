@@ -1028,13 +1028,13 @@ with st.sidebar:
             else:
                 df_raw = pd.read_excel(uploaded_file)
 
-            df_raw = rename_columns_by_position(df_raw)
-            df_original_raw = df_raw.copy()
-            df = preprocess_data(df_raw)
-
             default_prix_ssp = 2.500
             default_prix_go = 1.800
             default_prix_goss = 1.900
+
+            df_raw = rename_columns_by_position(df_raw)
+            df_original_raw = df_raw.copy()
+            df = preprocess_data(df_raw)
 
             if 'P.U' in df.columns and 'Produit' in df.columns:
                 for produit_type, attr in [('SSP', 'ssp'), ('GO', 'go'), ('GOSS', 'goss')]:
