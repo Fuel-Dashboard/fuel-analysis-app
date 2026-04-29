@@ -594,9 +594,12 @@ def preprocess_data(df):
         df_clean['Week'] = df_clean['Date'].dt.isocalendar().week
 
     if all(col in df_clean.columns for col in ['Km avant', 'KM après']):
+        df_clean['Km avant'] = pd.to_numeric(df_clean['Km avant'], errors='coerce')
+        df_clean['KM après'] = pd.to_numeric(df_clean['KM après'], errors='coerce')
         df_clean['Kilométrage parcouru'] = df_clean['KM après'] - df_clean['Km avant']
 
     if all(col in df_clean.columns for col in ['Quantité', 'Kilométrage parcouru']):
+        df_clean['Quantité'] = pd.to_numeric(df_clean['Quantité'], errors='coerce')
         mask = df_clean['Kilométrage parcouru'] > 0
         df_clean.loc[mask, 'Consommation/100km'] = (
             df_clean.loc[mask, 'Quantité'] / df_clean.loc[mask, 'Kilométrage parcouru']
