@@ -214,10 +214,7 @@ def tr(key):
 # ============================================
 st.markdown("""
 <style>
-/* ── Google Font ── */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap');
-
-/* ── Design tokens ── */
 :root {
     --brand:        #A82C14;
     --brand-deep:   #4F1111;
@@ -239,14 +236,10 @@ st.markdown("""
     --shadow:       0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
     --shadow-md:    0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
 }
-
-/* ── Base typography ── */
 html, body, [class*="css"], .stApp {
     font-family: 'DM Sans', sans-serif;
     color: var(--gray-800);
 }
-
-/* ── Top accent line ── */
 .stApp::before {
     content: '';
     display: block;
@@ -258,8 +251,6 @@ html, body, [class*="css"], .stApp {
     right: 0;
     z-index: 9999;
 }
-
-/* ── Main header ── */
 .main-header {
     font-family: 'DM Serif Display', serif;
     font-size: 2.6rem;
@@ -273,7 +264,6 @@ html, body, [class*="css"], .stApp {
     margin-bottom: 0.25rem;
     padding-top: 0.5rem;
 }
-
 .page-subtitle {
     text-align: center;
     color: var(--gray-600);
@@ -282,8 +272,6 @@ html, body, [class*="css"], .stApp {
     letter-spacing: 0.3px;
     margin-bottom: 1.5rem;
 }
-
-/* ── Section headers ── */
 .section-header {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.05rem;
@@ -296,8 +284,6 @@ html, body, [class*="css"], .stApp {
     margin-top: 2.5rem;
     margin-bottom: 1rem;
 }
-
-/* ── Status cards ── */
 .warning-card {
     background: var(--warning-bg);
     border: 1px solid #FDE68A;
@@ -308,7 +294,6 @@ html, body, [class*="css"], .stApp {
     color: var(--warning);
     margin: 0.5rem 0;
 }
-
 .success-card {
     background: var(--success-bg);
     border: 1px solid #A7F3D0;
@@ -319,7 +304,6 @@ html, body, [class*="css"], .stApp {
     color: var(--success);
     margin: 0.5rem 0;
 }
-
 .alert-card {
     background: var(--brand-pale);
     border: 1px solid var(--brand-tint);
@@ -330,8 +314,6 @@ html, body, [class*="css"], .stApp {
     color: var(--brand-deep);
     margin: 0.5rem 0;
 }
-
-/* ── Metric cards (st.metric override) ── */
 [data-testid="stMetric"] {
     background: #fff;
     border: 1px solid var(--gray-200);
@@ -362,8 +344,6 @@ html, body, [class*="css"], .stApp {
     font-size: 0.78rem !important;
     font-weight: 500 !important;
 }
-
-/* ── Estimation box ── */
 .estimation-box {
     background: var(--gray-50);
     border: 1px solid var(--gray-200);
@@ -380,8 +360,6 @@ html, body, [class*="css"], .stApp {
     font-weight: 600;
     color: var(--brand);
 }
-
-/* ── Download buttons ── */
 .stDownloadButton > button {
     background: #fff !important;
     color: var(--brand) !important;
@@ -398,8 +376,6 @@ html, body, [class*="css"], .stApp {
     color: #fff !important;
     border-color: var(--brand) !important;
 }
-
-/* ── Sidebar ── */
 [data-testid="stSidebar"] {
     background: #FAFAFA !important;
     border-right: 1px solid var(--gray-200) !important;
@@ -428,8 +404,6 @@ html, body, [class*="css"], .stApp {
     margin-bottom: 0.6rem !important;
     margin-top: 0.8rem !important;
 }
-
-/* ── Expanders ── */
 [data-testid="stExpander"] {
     border: 1px solid var(--gray-200) !important;
     border-radius: var(--radius) !important;
@@ -446,8 +420,6 @@ html, body, [class*="css"], .stApp {
 [data-testid="stExpander"] summary:hover {
     color: var(--brand) !important;
 }
-
-/* ── DataFrames ── */
 .stDataFrame {
     border: 1px solid var(--gray-200) !important;
     border-radius: var(--radius) !important;
@@ -466,15 +438,11 @@ html, body, [class*="css"], .stApp {
 .stDataFrame tbody tr:hover td {
     background: var(--brand-pale) !important;
 }
-
-/* ── Select / Multiselect / Input focus ── */
 [data-baseweb="select"] > div:focus-within,
 [data-baseweb="input"] > div:focus-within {
     border-color: var(--brand) !important;
     box-shadow: 0 0 0 2px rgba(168,44,20,0.12) !important;
 }
-
-/* ── Tabs (if used) ── */
 .stTabs [data-baseweb="tab-list"] {
     border-bottom: 2px solid var(--gray-200) !important;
     gap: 0.25rem !important;
@@ -490,25 +458,11 @@ html, body, [class*="css"], .stApp {
     color: var(--brand) !important;
     border-bottom: 2px solid var(--brand) !important;
 }
-
-/* ── Slider accent ── */
-[data-testid="stSlider"] .stSlider > div > div > div > div {
-    background: var(--brand) !important;
-}
-
-/* ── Divider ── */
 hr {
     border: none !important;
     border-top: 1px solid var(--gray-200) !important;
     margin: 1.5rem 0 !important;
 }
-
-/* ── Compact input ── */
-.compact-input {
-    font-size: 0.85rem;
-}
-
-/* ── Footer ── */
 .page-footer {
     text-align: center;
     font-size: 0.75rem;
@@ -529,7 +483,6 @@ hr {
 BRAND_COLORS = ["#A82C14", "#7e7c76", "#C84B30", "#4F1111", "#D97B60", "#2D1818", "#E8A090"]
 
 def style_chart(fig, height=400):
-    """Apply consistent brand styling to any Plotly figure."""
     fig.update_layout(
         height=height,
         font=dict(family="DM Sans, sans-serif", size=12, color="#374151"),
@@ -538,28 +491,10 @@ def style_chart(fig, height=400):
         margin=dict(t=48, b=32, l=8, r=8),
         title_font=dict(size=13, color="#1F2937", family="DM Sans, sans-serif"),
         title_x=0.0,
-        legend=dict(
-            bgcolor="rgba(255,255,255,0.9)",
-            bordercolor="#E5E7EB",
-            borderwidth=1,
-            font=dict(size=11),
-        ),
-        xaxis=dict(
-            gridcolor="#F3F4F6",
-            linecolor="#E5E7EB",
-            tickfont=dict(size=11),
-            showgrid=False,
-        ),
-        yaxis=dict(
-            gridcolor="#F3F4F6",
-            linecolor="rgba(0,0,0,0)",
-            tickfont=dict(size=11),
-        ),
-        hoverlabel=dict(
-            bgcolor="white",
-            bordercolor="#E5E7EB",
-            font=dict(size=12, family="DM Sans, sans-serif"),
-        ),
+        legend=dict(bgcolor="rgba(255,255,255,0.9)", bordercolor="#E5E7EB", borderwidth=1, font=dict(size=11)),
+        xaxis=dict(gridcolor="#F3F4F6", linecolor="#E5E7EB", tickfont=dict(size=11), showgrid=False),
+        yaxis=dict(gridcolor="#F3F4F6", linecolor="rgba(0,0,0,0)", tickfont=dict(size=11)),
+        hoverlabel=dict(bgcolor="white", bordercolor="#E5E7EB", font=dict(size=12, family="DM Sans, sans-serif")),
     )
     return fig
 
@@ -583,47 +518,32 @@ def rename_columns_by_position(df):
 def preprocess_data(df):
     df_clean = df.copy()
     df_clean.columns = df_clean.columns.str.strip()
-
-    # Convert all numeric columns upfront — prevents ArrowStringArray errors on
-    # Streamlit Cloud where pandas uses PyArrow-backed dtypes by default
-    numeric_cols = ['Km avant', 'KM après', 'Quantité', 'Montant', 'P.U',
-                    'Solde avant', 'Solde après', 'Consommation moyenne']
-    for col in numeric_cols:
-        if col in df_clean.columns:
-            df_clean[col] = pd.to_numeric(df_clean[col], errors='coerce')
-
     if 'Chauffeur' in df_clean.columns and 'Carte libelle' in df_clean.columns:
         mask = (df_clean['Chauffeur'].isna()) | (df_clean['Chauffeur'] == '')
         df_clean.loc[mask, 'Chauffeur'] = df_clean.loc[mask, 'Carte libelle']
-
     if 'Date' in df_clean.columns:
         df_clean['Date'] = pd.to_datetime(df_clean['Date'], dayfirst=True, errors='coerce')
         df_clean['Month'] = df_clean['Date'].dt.strftime('%Y-%m')
         df_clean['Week'] = df_clean['Date'].dt.isocalendar().week
-
     if all(col in df_clean.columns for col in ['Km avant', 'KM après']):
         df_clean['Kilométrage parcouru'] = df_clean['KM après'] - df_clean['Km avant']
-
     if all(col in df_clean.columns for col in ['Quantité', 'Kilométrage parcouru']):
         mask = df_clean['Kilométrage parcouru'] > 0
         df_clean.loc[mask, 'Consommation/100km'] = (
             df_clean.loc[mask, 'Quantité'] / df_clean.loc[mask, 'Kilométrage parcouru']
         ) * 100
         df_clean.loc[~mask, 'Consommation/100km'] = np.nan
-
     return df_clean
 
 def create_missing_data_table(df):
     if 'Chauffeur' not in df.columns:
         return pd.DataFrame()
-
     missing_data = []
     for driver in df['Chauffeur'].unique():
         if pd.isna(driver):
             continue
         dd = df[df['Chauffeur'] == driver]
         mv = mk_b = mk_a = mp = 0
-
         if 'Véhicule' in df.columns:
             mv = dd['Véhicule'].isna().sum() + (dd['Véhicule'].astype(str).str.strip() == '').sum()
         if 'Km avant' in df.columns:
@@ -634,7 +554,6 @@ def create_missing_data_table(df):
             mk_a = n.isna().sum() + (n == 0).sum()
         if 'Produit' in df.columns:
             mp = dd['Produit'].isna().sum() + (dd['Produit'].astype(str).str.strip() == '').sum()
-
         total = mv + mk_b + mk_a + mp
         if total > 0:
             missing_data.append({
@@ -645,7 +564,6 @@ def create_missing_data_table(df):
                 tr('missing_product'): int(mp),
                 tr('total_missing'): int(total)
             })
-
     if missing_data:
         return pd.DataFrame(missing_data).sort_values(tr('total_missing'), ascending=False)
     return pd.DataFrame()
@@ -680,7 +598,6 @@ def check_missing_data(df):
 def remove_rows_with_missing_data(df):
     df_clean = df.copy()
     masks = []
-
     if 'Véhicule' in df_clean.columns:
         masks.append(df_clean['Véhicule'].isna() | (df_clean['Véhicule'].astype(str).str.strip() == ''))
     if 'Km avant' in df_clean.columns:
@@ -691,7 +608,6 @@ def remove_rows_with_missing_data(df):
         masks.append(n.isna() | (n == 0))
     if 'Produit' in df_clean.columns:
         masks.append(df_clean['Produit'].isna() | (df_clean['Produit'].astype(str).str.strip() == ''))
-
     if masks:
         combined = masks[0]
         for m in masks[1:]:
@@ -700,28 +616,23 @@ def remove_rows_with_missing_data(df):
         df_clean = df_clean[~combined]
     else:
         removed = pd.DataFrame()
-
     return df_clean, removed
 
 def calculate_driver_metrics(df_clean, df_original, lang='fr'):
     if 'Chauffeur' not in df_clean.columns:
         return pd.DataFrame()
-
     metrics_clean = df_clean.groupby('Chauffeur').agg({
         'Kilométrage parcouru': 'sum',
         'Quantité': 'sum',
         'Montant': 'sum',
         'Consommation/100km': 'mean'
     }).round(2)
-    metrics_clean.columns = ['Kilométrage total', 'Consommation totale', 'Dépense totale',
-                              'Consommation moyenne/100km']
-
+    metrics_clean.columns = ['Kilométrage total', 'Consommation totale', 'Dépense totale', 'Consommation moyenne/100km']
     if 'Consommation/100km' in df_clean.columns:
         overall_avg = df_clean['Consommation/100km'].mean()
         metrics_clean['Écart vs moyenne'] = (
             (metrics_clean['Consommation moyenne/100km'] - overall_avg) / overall_avg * 100
         ).round(1)
-
     if 'Chauffeur' in df_original.columns:
         tx_counts = df_original.groupby('Chauffeur')['Ticket'].count()
         tx_counts.name = 'Nombre de transactions'
@@ -734,27 +645,21 @@ def calculate_driver_metrics(df_clean, df_original, lang='fr'):
     else:
         metrics = metrics_clean
         metrics['Nombre de transactions'] = df_clean.groupby('Chauffeur')['Ticket'].count()
-
     metrics = metrics.sort_values('Consommation totale', ascending=False)
-
     if lang == 'en':
         metrics.columns = ['Total Distance', 'Total Consumption', 'Total Cost',
-                           'Average Consumption/100km', 'Deviation vs Average',
-                           'Number of Transactions']
+                           'Average Consumption/100km', 'Deviation vs Average', 'Number of Transactions']
     return metrics
 
 def calculate_vehicle_metrics(df, lang='fr'):
     if 'Véhicule' not in df.columns:
         return pd.DataFrame()
-
     if 'Produit' in df.columns:
-        vehicle_products = df.groupby('Véhicule')['Produit'].agg(
-            lambda x: ', '.join(sorted(x.unique()))
-        ).rename('Énergie' if lang == 'fr' else 'Fuel')
+        vehicle_products = df.groupby('Véhicule')['Produit'].agg(lambda x: ', '.join(sorted(x.unique())))
+        vehicle_products.name = 'Énergie' if lang == 'fr' else 'Fuel'
     else:
         vehicle_products = pd.Series(index=df['Véhicule'].unique(), data='N/A')
         vehicle_products.name = 'Énergie' if lang == 'fr' else 'Fuel'
-
     metrics = df.groupby('Véhicule').agg({
         'Kilométrage parcouru': 'sum',
         'Quantité': 'sum',
@@ -762,14 +667,10 @@ def calculate_vehicle_metrics(df, lang='fr'):
         'Consommation/100km': 'mean'
     }).round(2)
     metrics = metrics.join(vehicle_products)
-
     if lang == 'fr':
-        metrics.columns = ['Kilométrage total', 'Consommation totale', 'Dépense totale',
-                           'Consommation moyenne/100km', 'Énergie']
+        metrics.columns = ['Kilométrage total', 'Consommation totale', 'Dépense totale', 'Consommation moyenne/100km', 'Énergie']
     else:
-        metrics.columns = ['Total Distance', 'Total Consumption', 'Total Cost',
-                           'Average Consumption/100km', 'Fuel']
-
+        metrics.columns = ['Total Distance', 'Total Consumption', 'Total Cost', 'Average Consumption/100km', 'Fuel']
     sort_col = 'Consommation totale' if lang == 'fr' else 'Total Consumption'
     return metrics.sort_values(sort_col, ascending=False)
 
@@ -779,115 +680,58 @@ def calculate_vehicle_metrics(df, lang='fr'):
 def create_driver_comparison_chart(df, metric='Consommation totale', top_n=15, lang='fr'):
     if 'Chauffeur' not in df.columns:
         return None
-
     if lang == 'fr':
         driver_metrics = calculate_driver_metrics(df, df, lang='fr')
         title = f"Top {top_n} Conducteurs — {metric}"
         x_label = 'Conducteur'
     else:
         driver_metrics = calculate_driver_metrics(df, df, lang='en')
-        metric_map = {
-            'Consommation totale': 'Total Consumption',
-            'Dépense totale': 'Total Cost',
-            'Kilométrage total': 'Total Distance'
-        }
+        metric_map = {'Consommation totale': 'Total Consumption', 'Dépense totale': 'Total Cost', 'Kilométrage total': 'Total Distance'}
         metric = metric_map.get(metric, metric)
         title = f"Top {top_n} Drivers — {metric}"
         x_label = 'Driver'
-
     if driver_metrics.empty:
         return None
-
     top_drivers = driver_metrics.nlargest(top_n, metric)
-
-    fig = px.bar(
-        top_drivers,
-        x=top_drivers.index,
-        y=metric,
-        title=title,
-        labels={'x': x_label, metric: metric},
-        color=metric,
-        color_continuous_scale=["#FFDDD8", "#C84B30", "#4F1111"],
-    )
-    fig.update_traces(
-        marker_line_width=0,
-        hovertemplate="<b>%{x}</b><br>" + metric + ": %{y:,.1f}<extra></extra>"
-    )
-    fig.update_layout(
-        xaxis_tickangle=-40,
-        showlegend=False,
-        coloraxis_showscale=False,
-    )
+    fig = px.bar(top_drivers, x=top_drivers.index, y=metric, title=title,
+                 labels={'x': x_label, metric: metric}, color=metric,
+                 color_continuous_scale=["#FFDDD8", "#C84B30", "#4F1111"])
+    fig.update_traces(marker_line_width=0, hovertemplate="<b>%{x}</b><br>" + metric + ": %{y:,.1f}<extra></extra>")
+    fig.update_layout(xaxis_tickangle=-40, showlegend=False, coloraxis_showscale=False)
     return style_chart(fig, height=380)
-
 
 def create_monthly_consumption_chart(df, year, lang='fr'):
     if 'Date' not in df.columns or 'Quantité' not in df.columns:
         return None
-
     df_year = df[df['Date'].dt.year == year].copy()
     if df_year.empty:
         fig = go.Figure()
-        fig.add_annotation(
-            text=("Aucune donnée pour l'année sélectionnée" if lang == 'fr' else "No data for selected year"),
-            xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False,
-            font=dict(size=13, color="#9CA3AF")
-        )
+        fig.add_annotation(text=("Aucune donnée pour l'année sélectionnée" if lang == 'fr' else "No data for selected year"),
+                           xref="paper", yref="paper", x=0.5, y=0.5, showarrow=False, font=dict(size=13, color="#9CA3AF"))
         return style_chart(fig, height=380)
-
     df_year['Month'] = df_year['Date'].dt.to_period('M')
     monthly = df_year.groupby('Month').agg({'Quantité': 'sum', 'Montant': 'sum'}).reset_index()
     monthly['Month_dt'] = monthly['Month'].dt.start_time
     monthly = monthly.sort_values('Month_dt')
-
     fig = go.Figure()
-    fig.add_trace(go.Scatter(
-        x=monthly['Month_dt'],
-        y=monthly['Quantité'],
-        mode='lines+markers',
-        name=('Consommation (L)' if lang == 'fr' else 'Consumption (L)'),
-        line=dict(color="#A82C14", width=2.5),
-        marker=dict(size=6, color="#A82C14", line=dict(color="white", width=1.5)),
-        fill='tozeroy',
-        fillcolor='rgba(168,44,20,0.07)',
-        yaxis='y',
-        hovertemplate="<b>%{x|%b %Y}</b><br>%{y:,.0f} L<extra></extra>"
-    ))
-    fig.add_trace(go.Bar(
-        x=monthly['Month_dt'],
-        y=monthly['Montant'],
-        name=('Coût (DT)' if lang == 'fr' else 'Cost (DT)'),
-        marker=dict(color='rgba(0,0,0,0)'),
-        yaxis='y2',
-        hovertemplate="<b>%{x|%b %Y}</b><br>%{y:,.0f} DT<extra></extra>"
-    ))
-
-    title = tr("consumption_trend") + f" · {year}"
-    y1_label = 'Consommation (L)' if lang == 'fr' else 'Consumption (L)'
-    y2_label = 'Coût (DT)' if lang == 'fr' else 'Cost (DT)'
-
-    fig.update_layout(
-        title=title,
-        xaxis=dict(title='', tickformat="%b %Y"),
-        yaxis=dict(
-            title=dict(text=y1_label, font=dict(size=11)),
-            color='#A82C14',
-        ),
-        yaxis2=dict(
-            title=dict(text=y2_label, font=dict(size=11)),
-            color='#A82C14',
-            overlaying='y', side='right', showgrid=False,
-        ),
-        hovermode='x unified',
-        showlegend=False,
-    )
+    fig.add_trace(go.Scatter(x=monthly['Month_dt'], y=monthly['Quantité'], mode='lines+markers',
+                             name='Consommation (L)' if lang == 'fr' else 'Consumption (L)',
+                             line=dict(color="#A82C14", width=2.5), marker=dict(size=6, color="#A82C14", line=dict(color="white", width=1.5)),
+                             fill='tozeroy', fillcolor='rgba(168,44,20,0.07)', yaxis='y',
+                             hovertemplate="<b>%{x|%b %Y}</b><br>%{y:,.0f} L<extra></extra>"))
+    fig.add_trace(go.Bar(x=monthly['Month_dt'], y=monthly['Montant'], name='Coût (DT)' if lang == 'fr' else 'Cost (DT)',
+                         marker=dict(color='rgba(0,0,0,0)'), yaxis='y2',
+                         hovertemplate="<b>%{x|%b %Y}</b><br>%{y:,.0f} DT<extra></extra>"))
+    fig.update_layout(title=tr("consumption_trend") + f" · {year}",
+                      xaxis=dict(title='', tickformat="%b %Y"),
+                      yaxis=dict(title=dict(text='Consommation (L)' if lang == 'fr' else 'Consumption (L)', font=dict(size=11)), color='#A82C14'),
+                      yaxis2=dict(title=dict(text='Coût (DT)' if lang == 'fr' else 'Cost (DT)', font=dict(size=11)), color='#A82C14', overlaying='y', side='right', showgrid=False),
+                      hovermode='x unified', showlegend=False)
     return style_chart(fig, height=380)
-
 
 def create_efficiency_scatter_plot(df, lang='fr'):
     if not all(col in df.columns for col in ['Kilométrage parcouru', 'Consommation/100km']):
         return None
-
     x_col, y_col = 'Kilométrage parcouru', 'Consommation/100km'
     if lang == 'fr':
         x_label, y_label = 'Distance parcourue (km)', 'Consommation (L/100km)'
@@ -895,90 +739,48 @@ def create_efficiency_scatter_plot(df, lang='fr'):
     else:
         x_label, y_label = 'Distance traveled (km)', 'Consumption (L/100km)'
         title = "Energy Efficiency · Consumption vs Distance"
-
     hover_cols = ['Chauffeur', 'Véhicule'] if all(c in df.columns for c in ['Chauffeur', 'Véhicule']) else None
-
-    fig = px.scatter(
-        df, x=x_col, y=y_col,
-        color='Chauffeur' if 'Chauffeur' in df.columns else None,
-        size='Quantité',
-        title=title,
-        labels={x_col: x_label, y_col: y_label},
-        hover_data=hover_cols,
-        color_discrete_sequence=BRAND_COLORS,
-        opacity=0.75,
-    )
+    fig = px.scatter(df, x=x_col, y=y_col, color='Chauffeur' if 'Chauffeur' in df.columns else None,
+                     size='Quantité', title=title, labels={x_col: x_label, y_col: y_label},
+                     hover_data=hover_cols, color_discrete_sequence=BRAND_COLORS, opacity=0.75)
     avg_c = df['Consommation/100km'].mean()
     avg_d = df['Kilométrage parcouru'].mean()
     avg_c_lbl = f"{'Moyenne' if lang=='fr' else 'Avg'}: {avg_c:.1f} L/100km"
     avg_d_lbl = f"{'Moyenne' if lang=='fr' else 'Avg'}: {avg_d:.0f} km"
-
-    fig.add_hline(y=avg_c, line_dash="dot", line_color="#A82C14", line_width=1.5,
-                  annotation_text=avg_c_lbl, annotation_font_size=11)
-    fig.add_vline(x=avg_d, line_dash="dot", line_color="#4F1111", line_width=1.5,
-                  annotation_text=avg_d_lbl, annotation_font_size=11)
+    fig.add_hline(y=avg_c, line_dash="dot", line_color="#A82C14", line_width=1.5, annotation_text=avg_c_lbl, annotation_font_size=11)
+    fig.add_vline(x=avg_d, line_dash="dot", line_color="#4F1111", line_width=1.5, annotation_text=avg_d_lbl, annotation_font_size=11)
     return style_chart(fig, height=420)
-
 
 def create_combined_distribution_chart(df, lang='fr'):
     if 'Véhicule' not in df.columns or 'Chauffeur' not in df.columns:
         return None
-
     df_c = df.copy()
     df_c['Chauffeur_Véhicule'] = df_c['Chauffeur'] + ' (' + df_c['Véhicule'] + ')'
     combined_dist = df_c.groupby('Chauffeur_Véhicule')['Quantité'].sum().nlargest(15)
-
     if combined_dist.empty:
         return None
-
-    fig = px.pie(
-        combined_dist, values=combined_dist.values, names=combined_dist.index,
-        title=tr("distribution_chart"),
-        hole=0.42,
-        color_discrete_sequence=BRAND_COLORS + ["#7e7c76", "#C0BDB7", "#8B7B7B",
-                                                  "#D4B8B8", "#E8D5D5", "#B85C3C"],
-    )
-    htmpl = ("<b>%{label}</b><br>Consommation: %{value:.0f} L<br>%{percent}"
-             if lang == 'fr' else
-             "<b>%{label}</b><br>Consumption: %{value:.0f} L<br>%{percent}")
-    fig.update_traces(
-        textposition='inside',
-        textinfo='percent',
-        hovertemplate=htmpl,
-        marker=dict(line=dict(color='white', width=1.5))
-    )
-    fig.update_layout(
-        showlegend=True,
-        legend=dict(orientation="v", yanchor="middle", y=0.5,
-                    xanchor="left", x=1.02, font=dict(size=10))
-    )
+    fig = px.pie(combined_dist, values=combined_dist.values, names=combined_dist.index,
+                 title=tr("distribution_chart"), hole=0.42,
+                 color_discrete_sequence=BRAND_COLORS + ["#7e7c76", "#C0BDB7", "#8B7B7B", "#D4B8B8", "#E8D5D5", "#B85C3C"])
+    htmpl = ("<b>%{label}</b><br>Consommation: %{value:.0f} L<br>%{percent}" if lang == 'fr' else "<b>%{label}</b><br>Consumption: %{value:.0f} L<br>%{percent}")
+    fig.update_traces(textposition='inside', textinfo='percent', hovertemplate=htmpl, marker=dict(line=dict(color='white', width=1.5)))
+    fig.update_layout(showlegend=True, legend=dict(orientation="v", yanchor="middle", y=0.5, xanchor="left", x=1.02, font=dict(size=10)))
     return style_chart(fig, height=420)
 
-
-# ============================================
-# YEARLY BREAKDOWN HELPER
-# ============================================
 def get_yearly_breakdown(df, co2_factors, current_lang):
     if 'Date' not in df.columns or df.empty:
         return pd.DataFrame()
-
     df_y = df.copy()
     df_y['Year'] = df_y['Date'].dt.year
-
-    yearly = df_y.groupby('Year').agg(
-        {'Kilométrage parcouru': 'sum', 'Quantité': 'sum', 'Montant': 'sum'}
-    ).rename(columns={'Kilométrage parcouru': 'km', 'Quantité': 'cons', 'Montant': 'cost'})
-
+    yearly = df_y.groupby('Year').agg({'Kilométrage parcouru': 'sum', 'Quantité': 'sum', 'Montant': 'sum'})
+    yearly.columns = ['km', 'cons', 'cost']
     if 'Produit' in df.columns:
         py = df_y.groupby(['Year', 'Produit'])['Quantité'].sum().reset_index()
-        py['co2_factor'] = py['Produit'].apply(
-            lambda p: co2_factors.get(p.upper(), 0) if pd.notna(p) else 0
-        )
+        py['co2_factor'] = py['Produit'].apply(lambda p: co2_factors.get(p.upper(), 0) if pd.notna(p) else 0)
         py['co2'] = py['Quantité'] * py['co2_factor']
         yearly['co2'] = py.groupby('Year')['co2'].sum()
     else:
         yearly['co2'] = 0
-
     yearly = yearly.round(0).astype(int).reset_index()
     if current_lang == 'fr':
         yearly.columns = ['Année', 'km', 'cons (L)', 'coût (DT)', 'CO2 (kg)']
@@ -986,28 +788,23 @@ def get_yearly_breakdown(df, co2_factors, current_lang):
         yearly.columns = ['Year', 'km', 'cons (L)', 'cost (DT)', 'CO2 (kg)']
     return yearly
 
+# ── Safe scalar extraction (handles ArrowDtype) ──
+def safe_scalar(series):
+    """Return a Python float from a pandas Series, regardless of its dtype (NumPy or Arrow)."""
+    if series is None or not isinstance(series, pd.Series):
+        return None
+    numeric = pd.to_numeric(series, errors='coerce')
+    if numeric.notna().any():
+        # Use .iloc[0] to always get a scalar, never an array
+        return float(numeric.mean())
+    return None
 
-# ============================================
-# HELPERS
-# ============================================
-def safe_scalar(value, default=0.0):
-    """Always return a plain Python float, even for Arrow-backed Series/arrays."""
-    try:
-        if hasattr(value, 'item'):      # numpy scalar
-            return float(value.item())
-        if hasattr(value, 'iloc'):      # Series / DataFrame
-            value = value.iloc[0]
-        return float(value)
-    except Exception:
-        return float(default)
-
-def _valid_price(v):
-    """Return True if v is a plain numeric scalar usable in number_input."""
-    try:
-        f = float(v)
-        return not (f != f)  # reject NaN
-    except Exception:
-        return False
+# ── Validate session state prices ──
+def validate_session_prices():
+    for k in ['ssp', 'go', 'goss']:
+        val = st.session_state.fuel_prices.get(k)
+        if not isinstance(val, (int, float)):
+            st.session_state.fuel_prices[k] = {'ssp': 2.500, 'go': 1.800, 'goss': 1.900}[k]
 
 # ============================================
 # SIDEBAR
@@ -1015,15 +812,7 @@ def _valid_price(v):
 with st.sidebar:
     logo_b64 = img_to_b64("logo_Clarke-removebg-preview.png")
     if logo_b64:
-        st.markdown(
-            f'<a href="/" target="_self" title="Retour à l\'accueil">'
-            f'<img src="data:image/png;base64,{logo_b64}" width="220" '
-            f'style="cursor:pointer; transition: opacity 0.2s; display:block;" '
-            f'onmouseover="this.style.opacity=\'0.75\'" '
-            f'onmouseout="this.style.opacity=\'1\'">'
-            f'</a>',
-            unsafe_allow_html=True
-        )
+        st.markdown(f'<a href="/" target="_self"><img src="data:image/png;base64,{logo_b64}" width="220" style="display:block;"></a>', unsafe_allow_html=True)
     else:
         st.markdown("## Clarke Energy")
 
@@ -1031,48 +820,31 @@ with st.sidebar:
 
     if 'language' not in st.session_state:
         st.session_state.language = 'fr'
-
-    language = st.selectbox(
-        "🌐 Language / Langue",
-        ["Français (fr)", "English (en)"],
-        index=0 if st.session_state.language == 'fr' else 1,
-        key='language_selector'
-    )
+    language = st.selectbox("🌐 Language / Langue", ["Français (fr)", "English (en)"],
+                            index=0 if st.session_state.language == 'fr' else 1, key='language_selector')
     st.session_state.language = 'fr' if "Français" in language else 'en'
     current_lang = st.session_state.language
 
     st.markdown("---")
 
-    uploaded_file = st.file_uploader(
-        tr("upload_file"),
-        type=['csv', 'xlsx', 'xls'],
-        help=tr("upload_help")
-    )
+    # ── Initialize and validate fuel prices ──
+    if 'fuel_prices' not in st.session_state:
+        st.session_state.fuel_prices = {'ssp': 2.500, 'go': 1.800, 'goss': 1.900}
+    validate_session_prices()
 
-    st.markdown("---")
+    default_prix_ssp = st.session_state.fuel_prices['ssp']
+    default_prix_go  = st.session_state.fuel_prices['go']
+    default_prix_goss= st.session_state.fuel_prices['goss']
 
-    # ── Validate & sanitise any fuel prices previously stored in session state ──
-    for _key, _default in [('cached_prix_ssp', 2.500),
-                            ('cached_prix_go',  1.800),
-                            ('cached_prix_goss', 1.900)]:
-        if _key in st.session_state and not _valid_price(st.session_state[_key]):
-            st.session_state[_key] = _default
-
-    # Always-safe fallback defaults (overridden from file data if available)
-    default_prix_ssp = 2.500
-    default_prix_go  = 1.800
-    default_prix_goss = 1.900
     anomaly_lower_limit = 2.0
     anomaly_upper_limit = 30.0
+
+    uploaded_file = st.file_uploader(tr("upload_file"), type=['csv', 'xlsx', 'xls'], help=tr("upload_help"))
 
     if uploaded_file:
         try:
             if uploaded_file.name.endswith('.csv'):
-                try:
-                    df_raw = pd.read_csv(uploaded_file, delimiter=';', encoding='utf-8')
-                except UnicodeDecodeError:
-                    uploaded_file.seek(0)
-                    df_raw = pd.read_csv(uploaded_file, delimiter=';', encoding='latin-1')
+                df_raw = pd.read_csv(uploaded_file, delimiter=';')
             else:
                 df_raw = pd.read_excel(uploaded_file)
 
@@ -1080,22 +852,34 @@ with st.sidebar:
             df_original_raw = df_raw.copy()
             df = preprocess_data(df_raw)
 
+            # Warn if 'P.U' looks non‑numeric
+            if 'P.U' in df.columns:
+                sample = df['P.U'].dropna().iloc[:10]
+                if len(sample) > 0 and not sample.apply(lambda x: isinstance(x, (int, float))).all():
+                    st.warning("⚠️ La colonne 'P.U' contient du texte – vérifiez la structure du fichier.")
+
+            # ── Safe price detection ──
             if 'P.U' in df.columns and 'Produit' in df.columns:
                 for produit_type, attr in [('SSP', 'ssp'), ('GO', 'go'), ('GOSS', 'goss')]:
                     mask = df['Produit'].astype(str).str.upper().str.contains(produit_type, na=False)
                     pu = pd.to_numeric(df.loc[mask, 'P.U'].squeeze(), errors='coerce')
-                    if pu.notna().any():
-                        mean_val = float(pu.mean())
-                        if attr == 'ssp': default_prix_ssp = mean_val
-                        elif attr == 'go': default_prix_go = mean_val
-                        elif attr == 'goss': default_prix_goss = mean_val
+                    scalar_price = safe_scalar(pu)
+                    if scalar_price is not None:
+                        st.session_state.fuel_prices[attr] = scalar_price
 
-            # ── Filters ──
+            default_prix_ssp = st.session_state.fuel_prices['ssp']
+            default_prix_go  = st.session_state.fuel_prices['go']
+            default_prix_goss= st.session_state.fuel_prices['goss']
+
+            # Filters, thresholds, etc.
             st.subheader(tr("analysis_filters"))
+            selected_driver = None
+            selected_vehicles = []
+            selected_products = []
+            date_range = None
 
             if 'Chauffeur' in df.columns:
-                all_opt = 'Tous' if current_lang == 'fr' else 'All'
-                drivers = [all_opt] + sorted(df['Chauffeur'].dropna().unique().tolist())
+                drivers = ['Tous' if current_lang == 'fr' else 'All'] + sorted(df['Chauffeur'].dropna().unique().tolist())
                 selected_driver = st.selectbox(tr("select_driver"), drivers, help=tr("driver_help"))
 
             if 'Véhicule' in df.columns:
@@ -1104,77 +888,55 @@ with st.sidebar:
                     selected_vehicles = st.multiselect(tr("filter_vehicles"), vehicles, default=[])
                 else:
                     st.info("Aucun véhicule disponible" if current_lang == 'fr' else "No vehicle data")
-                    selected_vehicles = []
 
             if 'Produit' in df.columns:
-                products = [p for p in df['Produit'].dropna().unique().tolist()
-                            if 'wash' not in str(p).lower()]
+                products = [p for p in df['Produit'].dropna().unique().tolist() if 'wash' not in str(p).lower()]
                 if products:
-                    selected_products = st.multiselect(
-                        "Type de Produit" if current_lang == 'fr' else "Product Type",
-                        products, default=[])
-                else:
-                    selected_products = []
+                    selected_products = st.multiselect("Type de Produit" if current_lang == 'fr' else "Product Type", products, default=[])
 
             if 'Date' in df.columns:
                 min_date = df['Date'].min().date()
                 max_date = df['Date'].max().date()
-                date_range = st.date_input(
-                    tr("select_period"), [min_date, max_date],
-                    min_value=min_date, max_value=max_date
-                )
+                date_range = st.date_input(tr("select_period"), [min_date, max_date], min_value=min_date, max_value=max_date)
 
-            # ── Alert threshold ──
             st.subheader(tr("alert_thresholds"))
-            consumption_threshold = st.slider(
-                tr("consumption_threshold"),
-                min_value=5.0, max_value=20.0, value=10.0, step=0.5,
-                help=tr("threshold_help")
-            )
+            consumption_threshold = st.slider(tr("consumption_threshold"), 5.0, 20.0, 10.0, 0.5, help=tr("threshold_help"))
 
-            # ── Anomaly detection ──
             st.subheader(tr("anomaly_settings"))
             col_an1, col_an2 = st.columns(2)
             with col_an1:
-                anomaly_lower_limit = st.number_input(
-                    tr("lower_limit"), value=2.0, min_value=0.0, max_value=10.0, step=0.1)
+                anomaly_lower_limit = st.number_input(tr("lower_limit"), value=2.0, min_value=0.0, max_value=10.0, step=0.1)
             with col_an2:
-                anomaly_upper_limit = st.number_input(
-                    tr("upper_limit"), value=30.0, min_value=10.0, max_value=100.0, step=1.0)
+                anomaly_upper_limit = st.number_input(tr("upper_limit"), value=30.0, min_value=10.0, max_value=100.0, step=1.0)
 
         except Exception as e:
             st.error(f"{'Erreur' if current_lang == 'fr' else 'Error'}: {str(e)}")
             df = None
             df_original_raw = None
-
     else:
         df = None
         df_original_raw = None
 
     st.markdown("---")
 
-    # ── Settings ──
     st.subheader(tr("settings"))
     st.markdown(f"**{'Prix carburants' if current_lang=='fr' else 'Fuel prices'}**")
     col_p1, col_p2, col_p3 = st.columns(3)
     with col_p1:
         try:
-            prix_ssp = st.number_input(tr("fuel_price_ssp"), value=safe_scalar(default_prix_ssp, 2.500),
-                                       min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+            prix_ssp = st.number_input(tr("fuel_price_ssp"), value=float(default_prix_ssp), min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
         except Exception:
-            prix_ssp = 2.500
+            prix_ssp = st.number_input(tr("fuel_price_ssp"), value=2.500, min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
     with col_p2:
         try:
-            prix_go = st.number_input(tr("fuel_price_go"), value=safe_scalar(default_prix_go, 1.800),
-                                      min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+            prix_go = st.number_input(tr("fuel_price_go"), value=float(default_prix_go), min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
         except Exception:
-            prix_go = 1.800
+            prix_go = st.number_input(tr("fuel_price_go"), value=1.800, min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
     with col_p3:
         try:
-            prix_goss = st.number_input(tr("fuel_price_goss"), value=safe_scalar(default_prix_goss, 1.900),
-                                        min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
+            prix_goss = st.number_input(tr("fuel_price_goss"), value=float(default_prix_goss), min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
         except Exception:
-            prix_goss = 1.900
+            prix_goss = st.number_input(tr("fuel_price_goss"), value=1.900, min_value=0.01, max_value=10.0, step=0.001, format="%.3f")
 
     st.markdown(f"**{tr('co2_factors')}**")
     col_c1, col_c2, col_c3 = st.columns(3)
@@ -1190,6 +952,8 @@ with st.sidebar:
 # ============================================
 st.markdown(f'<h1 class="main-header">{tr("title")}</h1>', unsafe_allow_html=True)
 st.markdown(f'<p class="page-subtitle">{tr("subtitle")}</p>', unsafe_allow_html=True)
+
+
 
 # ============================================
 # MAIN APP LOGIC
