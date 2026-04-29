@@ -594,12 +594,9 @@ def preprocess_data(df):
         df_clean['Week'] = df_clean['Date'].dt.isocalendar().week
 
     if all(col in df_clean.columns for col in ['Km avant', 'KM après']):
-        df_clean['Km avant'] = pd.to_numeric(df_clean['Km avant'], errors='coerce')
-        df_clean['KM après'] = pd.to_numeric(df_clean['KM après'], errors='coerce')
         df_clean['Kilométrage parcouru'] = df_clean['KM après'] - df_clean['Km avant']
 
     if all(col in df_clean.columns for col in ['Quantité', 'Kilométrage parcouru']):
-        df_clean['Quantité'] = pd.to_numeric(df_clean['Quantité'], errors='coerce')
         mask = df_clean['Kilométrage parcouru'] > 0
         df_clean.loc[mask, 'Consommation/100km'] = (
             df_clean.loc[mask, 'Quantité'] / df_clean.loc[mask, 'Kilométrage parcouru']
@@ -1016,6 +1013,21 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # ------------------------------------------------------------------
+    # Initialise default prices and anomaly limits OUTSIDE the upload block
+    # ------------------------------------------------------------------
+    if 'fuel_prices' not in st.session_state:
+        st.session_state.fuel_prices = {'ssp': 2.500, 'go': 1.800, 'goss': 1.900}
+    default_prix_ssp = st.session_state.fuel_prices['ssp']
+    default_prix_go  = st.session_state.fuel_prices['go']
+    default_prix_goss= st.session_state.fuel_prices['goss']
+
+    anomaly_lower_limit = 2.0
+    anomaly_upper_limit = 30.0
+
+    # ------------------------------------------------------------------
+    # File uploader
+    # ------------------------------------------------------------------
     uploaded_file = st.file_uploader(
         tr("upload_file"),
         type=['csv', 'xlsx', 'xls'],
@@ -1023,13 +1035,6 @@ with st.sidebar:
     )
 
     st.markdown("---")
-
-    # Always-safe fallback defaults (overridden from file data if available)
-    default_prix_ssp = 2.500
-    default_prix_go  = 1.800
-    default_prix_goss = 1.900
-    anomaly_lower_limit = 2.0
-    anomaly_upper_limit = 30.0
 
     if uploaded_file:
         try:
@@ -1042,15 +1047,26 @@ with st.sidebar:
             df_original_raw = df_raw.copy()
             df = preprocess_data(df_raw)
 
+            # Warn if 'P.U' column contains text (wrong mapping)
+            if 'P.U' in df.columns:
+                sample = df['P.U'].dropna().iloc[:10]
+                if len(sample) > 0 and not sample.apply(lambda x: isinstance(x, (int, float))).all():
+                    st.warning("⚠️ La colonne 'P.U' contient du texte – vérifiez la structure du fichier.")
+
+            # Detect actual fuel prices from data (safe version)
             if 'P.U' in df.columns and 'Produit' in df.columns:
                 for produit_type, attr in [('SSP', 'ssp'), ('GO', 'go'), ('GOSS', 'goss')]:
                     mask = df['Produit'].astype(str).str.upper().str.contains(produit_type, na=False)
+                    # .squeeze() ensures we have a Series even if duplicate column names exist
                     pu = pd.to_numeric(df.loc[mask, 'P.U'].squeeze(), errors='coerce')
                     if pu.notna().any():
                         mean_val = float(pu.mean())
-                        if attr == 'ssp': default_prix_ssp = mean_val
-                        elif attr == 'go': default_prix_go = mean_val
-                        elif attr == 'goss': default_prix_goss = mean_val
+                        st.session_state.fuel_prices[attr] = mean_val
+
+            # Update the default prices from session state
+            default_prix_ssp = st.session_state.fuel_prices['ssp']
+            default_prix_go  = st.session_state.fuel_prices['go']
+            default_prix_goss= st.session_state.fuel_prices['goss']
 
             # ── Filters ──
             st.subheader(tr("analysis_filters"))
@@ -1115,7 +1131,7 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ── Settings ──
+    # ── Settings (always visible, even without file) ──
     st.subheader(tr("settings"))
     st.markdown(f"**{'Prix carburants' if current_lang=='fr' else 'Fuel prices'}**")
     col_p1, col_p2, col_p3 = st.columns(3)
