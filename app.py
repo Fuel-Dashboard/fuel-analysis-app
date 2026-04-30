@@ -584,7 +584,19 @@ def preprocess_data(df):
     df_clean = df.copy()
     df_clean.columns = df_clean.columns.str.strip()
 
+    # Normalize all StringDtype columns to plain object dtype
+    # (prevents ArrowStringArray issues on Streamlit Cloud)
+    for col in df_clean.columns:
+        if hasattr(df_clean[col].dtype, 'name') and df_clean[col].dtype.name == 'string':
+            try:
+                df_clean[col] = df_clean[col].astype(object)
+            except Exception:
+                pass
+
     if 'Chauffeur' in df_clean.columns and 'Carte libelle' in df_clean.columns:
+        # Convert to object first — Chauffeur is float64 (all-NaN) from the raw CSV
+        df_clean['Chauffeur'] = df_clean['Chauffeur'].astype(object)
+        df_clean['Carte libelle'] = df_clean['Carte libelle'].astype(object)
         mask = (df_clean['Chauffeur'].isna()) | (df_clean['Chauffeur'].astype(str).str.strip() == '') | (df_clean['Chauffeur'].astype(str).str.lower() == 'nan')
         df_clean.loc[mask, 'Chauffeur'] = df_clean.loc[mask, 'Carte libelle']
         df_clean['Chauffeur'] = df_clean['Chauffeur'].astype(str).str.strip()
@@ -1036,6 +1048,18 @@ with st.sidebar:
                 df_raw = pd.read_csv(uploaded_file, delimiter=';')
             else:
                 df_raw = pd.read_excel(uploaded_file)
+            # Convert every column to standard numpy dtypes immediately after reading.
+            # Newer pandas/pyarrow on Streamlit Cloud returns StringDtype/ArrowStringArray
+            # for text columns; assigning strings into a float64 column (Chauffeur is all-NaN)
+            # then raises "Invalid value for dtype float64". Casting to object fixes this.
+            df_raw = df_raw.astype(
+                {col: object for col in df_raw.columns
+                 if 'string' in str(df_raw[col].dtype).lower() or df_raw[col].dtype == object}
+            )
+            # Also convert any remaining StringDtype via a blanket convert_dtypes reversal
+            for col in df_raw.columns:
+                if hasattr(df_raw[col].dtype, 'name') and df_raw[col].dtype.name == 'string':
+                    df_raw[col] = df_raw[col].astype(object)
 
             df_raw = rename_columns_by_position(df_raw)
             df_original_raw = df_raw.copy()
@@ -1061,7 +1085,7 @@ with st.sidebar:
                 selected_driver = st.selectbox(tr("select_driver"), drivers, help=tr("driver_help"))
 
             if 'Véhicule' in df.columns:
-                vehicles = df['Véhicule'].dropna().unique().tolist()
+                vehicles = sorted([str(v) for v in df['Véhicule'].dropna().unique().tolist()])
                 if vehicles:
                     selected_vehicles = st.multiselect(tr("filter_vehicles"), vehicles, default=[])
                 else:
@@ -1069,7 +1093,7 @@ with st.sidebar:
                     selected_vehicles = []
 
             if 'Produit' in df.columns:
-                products = [p for p in df['Produit'].dropna().unique().tolist()
+                products = [str(p) for p in df['Produit'].dropna().unique().tolist()
                             if 'wash' not in str(p).lower()]
                 if products:
                     selected_products = st.multiselect(
